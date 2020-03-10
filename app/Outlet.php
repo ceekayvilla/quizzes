@@ -8,7 +8,7 @@ use Emadadly\LaravelUuid\Uuids;
 class Outlet extends Model
 {
     use Uuids;
-     public $incrementing = 'false';
+     public $incrementing = false;
      protected $keyType = 'string';
      protected $primaryKey = 'id';
      protected $table = 'outlets';
