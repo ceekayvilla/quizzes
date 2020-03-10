@@ -16,4 +16,8 @@ class Question extends Model
         'question_text',
     ];
 
+    public function answers(){
+        return $this->hasMany('App\Answer','question_id', 'id');
+    }
+
 }
