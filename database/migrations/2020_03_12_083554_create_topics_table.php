@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class QuestionTopic extends Migration
+class CreateTopicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class QuestionTopic extends Migration
      */
     public function up()
     {
-        Schema::create('question_topic', function (Blueprint $table) {
-            $table->uuid('id')->unique();
-            $table->uuid('question_id');
-            $table->uuid('topic_id');
-            $table->foreign('question_id')->references('id')->on('questions');
-
+        Schema::create('topics', function (Blueprint $table) {
+            $table->uuid('id')->unique()->primary();
+            $table->string('name',255)->unique();
+            $table->text('description');
+            $table->timestamps();
+            $table->softDeletes('deleted_at');
         });
     }
 
@@ -29,6 +29,6 @@ class QuestionTopic extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('question_topic');
+        Schema::dropIfExists('topics');
     }
 }
